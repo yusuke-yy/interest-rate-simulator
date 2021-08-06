@@ -1,0 +1,16 @@
+body {
+    font-family: sans-serif;
+  }
+
+.top-area {
+    text-align: center;
+    color: #666;
+    background-color: #ceffce;
+    width: 400px;
+    height: 52px;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px;
+    font-weight: bold;
+    font-size: 30px;
+}
