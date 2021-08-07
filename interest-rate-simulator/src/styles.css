@@ -16,7 +16,15 @@ body {
     font-size: 30px;
 }
 
+.grid {
+  display: grid;
+  grid-template-rows: 240px 100px 240px;
+  grid-template-columns: 600px 100px 600px;
+}
+
 .input-area {
+    grid-row: 1 / 4;
+    grid-column: 1 / 2;
     text-align: center;
     color: #666;
     background-color: #ceffce;
@@ -25,6 +33,7 @@ body {
     border-radius: 20px;
     padding: 40px;
     margin: 40px;
+    margin-top: 0px;
     font-weight: bold;
     font-size: 30px;
   }
@@ -144,4 +153,13 @@ body {
 .percentage {
   font-size: 24px;
   margin-left: 300px;
+}
+
+.triangle {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 50px solid #ffc4c4;
+  margin-left: 25px;
 }
