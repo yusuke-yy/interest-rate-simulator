@@ -1,5 +1,6 @@
 body {
     font-family: sans-serif;
+
   }
 
 .top-area {
@@ -13,4 +14,134 @@ body {
     margin: 40px;
     font-weight: bold;
     font-size: 30px;
+}
+
+.input-area {
+    text-align: center;
+    color: #666;
+    background-color: #ceffce;
+    width: 400px;
+    height: 490px;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px;
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+.borrowing-area {
+    text-align: center;
+    color: #666;
+    background-color: #ffe7e7;
+    width: 400px;
+    height: 150px;
+    border-radius: 20px;
+    padding: 0px;
+    margin: 0px;
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+.borrowing {
+    padding-top: 10px;
+}
+
+.borrowing-input {
+    width: 80%;
+    margin-left: 15px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 2px solid #ddd;
+    box-sizing: border-box;
+}
+
+.yen {
+    font-size: 24px;
+    margin-left: 300px;
+}
+
+.payback-area {
+  color: #666;
+  background-color: #ffe7e7;
+  width: 400px;
+  height: 150px;
+  border-radius: 20px;
+  padding: 0px;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.payback {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.payback_months-input {
+  width: 38%;
+  margin-left: 15px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 3px;
+  border: 2px solid #ddd;
+  box-sizing: border-box;
+}
+
+.payback_years-input {
+  width: 38%;
+  margin-left: 15px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 3px;
+  border: 2px solid #ddd;
+  box-sizing: border-box;
+}
+
+.years {
+  text-align: initial;
+  font-size: 24px;
+  margin-left: 130px
+}
+
+.mounths {
+  text-align: initial;
+  font-size: 24px;
+  margin-left: 120px;
+}
+
+.interest-rate-area {
+  text-align: center;
+  color: #666;
+  background-color: #ffe7e7;
+  width: 400px;
+  height: 150px;
+  border-radius: 20px;
+  padding: 0px;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.interest-rate {
+  padding-top: 10px;
+}
+
+.interest-rate-input {
+  width: 80%;
+  margin-left: 15px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 3px;
+  border: 2px solid #ddd;
+  box-sizing: border-box;
+}
+
+.percentage {
+  font-size: 24px;
+  margin-left: 300px;
 }
