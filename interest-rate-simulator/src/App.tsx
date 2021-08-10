@@ -32,6 +32,16 @@ function App() {
           </div>
         </div>
         <div className="triangle"></div>
+        <div className="result-area">
+          <div className="total_payback-area">
+            <div className="total_payback">合計返済金額</div>
+            <div className="">円</div>
+          </div>
+          <div className="mounths_payback-area">
+            <div className="mounths_payback">毎月返済金額</div>
+            <div className="">円</div>
+          </div>
+        </div>
       </div>
     </>
   );
