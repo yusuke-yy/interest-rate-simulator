@@ -163,3 +163,52 @@ body {
   border-left: 50px solid #ffc4c4;
   margin-left: 25px;
 }
+
+.result-area {
+  grid-row: 1 / 4;
+  grid-column: 3 / 4;
+  text-align: center;
+  color: #666;
+  background-color: #ceffce;
+  width: 400px;
+  height: 320px;
+  border-radius: 20px;
+  padding: 40px;
+  margin: 40px;
+  margin-top: 0px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.total_payback-area {
+  text-align: center;
+  color: #666;
+  background-color: #ffe7e7;
+  width: 400px;
+  height: 150px;
+  border-radius: 20px;
+  padding: 0px;
+  margin: 0px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.total_payback {
+  padding-top: 10px;
+}
+
+.mounths_payback-area {
+  color: #666;
+  background-color: #ffe7e7;
+  width: 400px;
+  height: 150px;
+  border-radius: 20px;
+  padding: 0px;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.mounths_payback {
+  padding-top: 10px;
+}
