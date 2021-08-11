@@ -49,11 +49,11 @@ function App() {
         <div className="result-area">
           <div className="total_payback-area">
             <div className="total_payback">合計返済金額</div>
-            <div className="">{Math.round(numTotalPayBack)}円</div>
+            <div className="">{Math.round(numTotalPayBack).toLocaleString()}円</div>
           </div>
           <div className="mounths_payback-area">
             <div className="mounths_payback">毎月返済金額</div>
-            <div className="">{Math.round(mounthsPayback)}円</div>
+            <div className="">{Math.round(mounthsPayback).toLocaleString()}円</div>
           </div>
         </div>
       </div>
