@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import "./styles.css";
 
 function App() {
-  const [inputBorrowing, setInputBorrowing] = useState<number>(0);
-  const [inputPaybackYears, setInputPaybackYears] = useState<number>(0);
-  const [inputPaybackMounths, setInputPaybackMounths] = useState<number>(0);
-  const [inputInterestRate, setInputInterestRate] = useState<number>(0);
+  const [inputBorrowing, setInputBorrowing] = useState<number>();
+  const [inputPaybackYears, setInputPaybackYears] = useState<number>();
+  const [inputPaybackMounths, setInputPaybackMounths] = useState<number>();
+  const [inputInterestRate, setInputInterestRate] = useState<number>();
   const onChangeInputBorrowing = (e: any) => setInputBorrowing(e.target.value);
   const onChangeInputPaybackYears = (e: any) => setInputPaybackYears(e.target.value);
   const onChangeInputPaybackMounths = (e: any) => setInputPaybackMounths(e.target.value);
@@ -16,7 +16,28 @@ function App() {
   const mounthsPayback: number = Number(inputBorrowing)*(percentages)*exponentiation/(exponentiation-1);
   const numTotalPayBack: number = Number(mounthsPayback) * numPayBack;
   const totalInterest: number = Number(numTotalPayBack)-Number(inputBorrowing);
-  
+  const nanTotalPayBack = (numTotalPayBack: any) => {
+    if (isNaN(numTotalPayBack)) {
+      return "-"
+    } else {
+      return Math.round(numTotalPayBack).toLocaleString()
+    }
+  }
+  const nanMounthsPayback = (mounthsPayback: any) => {
+    if (isNaN(mounthsPayback)) {
+      return "-"
+    } else {
+      return Math.round(mounthsPayback).toLocaleString()
+    }
+  } 
+  const nanTotalInterest = (totalInterest: any) => {
+    if (isNaN(totalInterest)) {
+      return "-"
+    } else {
+      return Math.round(totalInterest).toLocaleString()
+    }
+  } 
+
   return (
     <>
       <div className="top-area">
@@ -50,15 +71,15 @@ function App() {
         <div className="result-area">
           <div className="total_payback-area">
             <div className="total_payback">合計返済金額</div>
-            <div className="">{Math.round(numTotalPayBack).toLocaleString()}円</div>
+            <div className="">{nanTotalPayBack(numTotalPayBack)}円</div>
           </div>
           <div className="mounths_payback-area">
             <div className="mounths_payback">毎月返済金額</div>
-            <div className="">{Math.round(mounthsPayback).toLocaleString()}円</div>
+            <div className="">{nanMounthsPayback(mounthsPayback)}円</div>
           </div>
           <div className="total_interest-area">
           <div className="total_interest">総利息分</div>
-          <div className="">{Math.round(totalInterest).toLocaleString()}円</div>
+          <div className="">{nanTotalInterest(totalInterest)}円</div>
           </div>
         </div>
       </div>
