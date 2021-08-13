@@ -15,6 +15,7 @@ function App() {
   const exponentiation: number = Math.pow((1+percentages), Number(numPayBack));
   const mounthsPayback: number = Number(inputBorrowing)*(percentages)*exponentiation/(exponentiation-1);
   const numTotalPayBack: number = Number(mounthsPayback) * numPayBack;
+  const totalInterest: number = Number(numTotalPayBack)-Number(inputBorrowing);
   
   return (
     <>
@@ -54,6 +55,10 @@ function App() {
           <div className="mounths_payback-area">
             <div className="mounths_payback">毎月返済金額</div>
             <div className="">{Math.round(mounthsPayback).toLocaleString()}円</div>
+          </div>
+          <div className="total_interest-area">
+          <div className="total_interest">総利息分</div>
+          <div className="">{Math.round(totalInterest).toLocaleString()}円</div>
           </div>
         </div>
       </div>
