@@ -49,14 +49,14 @@ function App() {
         <div className="input-area">
           <div className="borrowing-area">
             <div className="borrowing">借入金額</div>
-            <input className="borrowing-input" value={inputBorrowing} onChange={onChangeInputBorrowing} />
+            <input className="borrowing-input" type="number" value={inputBorrowing} onChange={onChangeInputBorrowing} />
             <div className="yen">円</div>
           </div>
           <div className="payback-area">
             <div className="payback">返済期間</div>
             <div className="inline-block">
-              <input className="payback_years-input" value={inputPaybackYears} onChange={onChangeInputPaybackYears}/>
-              <input className="payback_months-input" value={inputPaybackMounths} onChange={onChangeInputPaybackMounths}/>
+              <input className="payback_years-input" type="number" value={inputPaybackYears} onChange={onChangeInputPaybackYears}/>
+              <input className="payback_months-input" type="number" value={inputPaybackMounths} onChange={onChangeInputPaybackMounths}/>
             </div>
             <div className="inline-block">
               <span className="years">年</span>
@@ -65,7 +65,7 @@ function App() {
           </div>
           <div className="interest-rate-area">
             <div className="interest-rate">金利</div>
-            <input className="interest-rate-input" value={inputInterestRate} onChange={onChangeInputInterestRate}/>
+            <input className="interest-rate-input" type="number" value={inputInterestRate} onChange={onChangeInputInterestRate}/>
             <div className="percentage">％</div>
           </div>
         </div>
