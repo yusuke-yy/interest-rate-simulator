@@ -10,7 +10,9 @@ function App() {
   const onChangeInputPaybackYears = (e: any) => setInputPaybackYears(e.target.value);
   const onChangeInputPaybackMounths = (e: any) => setInputPaybackMounths(e.target.value);
   const onChangeInputInterestRate = (e: any) => setInputInterestRate(e.target.value);
-  const numPayBack: number = Number(inputPaybackYears)*12+Number(inputPaybackMounths);
+  const firstinputPaybackYears = inputPaybackYears || 0;
+  const firstinputPaybackMounths = inputPaybackMounths || 0;
+  let numPayBack: number = Number(firstinputPaybackYears)*12+Number(firstinputPaybackMounths);
   const percentages: number = Number(inputInterestRate)/100
   const exponentiation: number = Math.pow((1+percentages), Number(numPayBack));
   const mounthsPayback: number = Number(inputBorrowing)*(percentages)*exponentiation/(exponentiation-1);
@@ -36,7 +38,7 @@ function App() {
     } else {
       return Math.round(totalInterest).toLocaleString()
     }
-  } 
+  }
 
   return (
     <>
