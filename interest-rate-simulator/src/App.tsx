@@ -34,7 +34,7 @@ function App() {
   const hankakuinputPaybackYears = zentohaninputPaybackYears(inputPaybackYears)
   const hankakuinputPaybackMounths = zentohaninputPaybackMounths(inputPaybackMounths)
   const hankakuinputInterestRate = zentohaninputInterestRate(inputInterestRate)
-  const firstinputPaybackYears = hankakuinputPaybackYears || 0;
+  const firstinputPaybackYears = hankakuinputPaybackYears || 0.;
   const firstinputPaybackMounths = hankakuinputPaybackMounths || 0;
   let numPayBack: number = Number(firstinputPaybackYears)*12+Number(firstinputPaybackMounths);
   const percentages: number = Number(hankakuinputInterestRate)/100
@@ -63,6 +63,34 @@ function App() {
       return Math.round(totalInterest).toLocaleString()
     }
   }
+  const undefinedBorrowing = (hankakuinputBorrowing: any) => {
+    if (hankakuinputBorrowing === "undefined") {
+      return ""
+    } else {
+      return hankakuinputBorrowing
+    }
+  }
+  const undefinedPaybackYears = (hankakuinputPaybackYears: any) => {
+    if (hankakuinputPaybackYears === "undefined") {
+      return ""
+    } else {
+      return hankakuinputPaybackYears
+    }
+  }
+  const undefinedPaybackMounths = (hankakuinputPaybackMounths: any) => {
+    if (hankakuinputPaybackMounths === "undefined") {
+      return ""
+    } else {
+      return hankakuinputPaybackMounths
+    }
+  }
+  const undefinedInterestRate = (hankakuinputPaybackInterestRate: any) => {
+    if (hankakuinputPaybackInterestRate === "undefined") {
+      return ""
+    } else {
+      return hankakuinputPaybackInterestRate
+    }
+  }
 
   return (
     <>
@@ -73,14 +101,14 @@ function App() {
         <div className="input-area">
           <div className="borrowing-area">
             <div className="borrowing">借入金額</div>
-            <input className="borrowing-input" value={hankakuinputBorrowing} onChange={onChangeInputBorrowing} />
+            <input className="borrowing-input" value={undefinedBorrowing(hankakuinputBorrowing)} onChange={onChangeInputBorrowing} />
             <div className="yen">円</div>
           </div>
           <div className="payback-area">
             <div className="payback">返済期間</div>
             <div className="inline-block">
-              <input className="payback_years-input" value={hankakuinputPaybackYears} onChange={onChangeInputPaybackYears}/>
-              <input className="payback_months-input" value={hankakuinputPaybackMounths} onChange={onChangeInputPaybackMounths}/>
+              <input className="payback_years-input" value={undefinedPaybackYears(hankakuinputPaybackYears)} onChange={onChangeInputPaybackYears}/>
+              <input className="payback_months-input" value={undefinedPaybackMounths(hankakuinputPaybackMounths)} onChange={onChangeInputPaybackMounths}/>
             </div>
             <div className="inline-block">
               <span className="years">年</span>
@@ -89,7 +117,7 @@ function App() {
           </div>
           <div className="interest-rate-area">
             <div className="interest-rate">金利</div>
-            <input className="interest-rate-input" value={hankakuinputInterestRate} onChange={onChangeInputInterestRate}/>
+            <input className="interest-rate-input" value={undefinedInterestRate(hankakuinputInterestRate)} onChange={onChangeInputInterestRate}/>
             <div className="percentage">％</div>
           </div>
         </div>
