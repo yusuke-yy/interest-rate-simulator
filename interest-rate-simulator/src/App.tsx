@@ -112,21 +112,21 @@ function App() {
     }
   }
   const undefinedPaybackYears = (limitHankakuInputPaybackYears: any) => {
-    if (limitHankakuInputPaybackYears === "undefined") {
+    if (limitHankakuInputPaybackYears === "un") {
       return ""
     } else {
       return limitHankakuInputPaybackYears
     }
   }
   const undefinedPaybackMounths = (limitHankakuInputPaybackMounths: any) => {
-    if (limitHankakuInputPaybackMounths === "undefined") {
+    if (limitHankakuInputPaybackMounths === "un") {
       return ""
     } else {
       return limitHankakuInputPaybackMounths
     }
   }
   const undefinedInterestRate = (hankakuInputPaybackInterestRate: any) => {
-    if (hankakuInputPaybackInterestRate === "undefined") {
+    if (hankakuInputPaybackInterestRate === "un") {
       return ""
     } else {
       return hankakuInputPaybackInterestRate
