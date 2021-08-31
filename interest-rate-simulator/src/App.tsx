@@ -10,38 +10,79 @@ function App() {
   const onChangeInputPaybackYears = (e: any) => setInputPaybackYears(e.target.value);
   const onChangeInputPaybackMounths = (e: any) => setInputPaybackMounths(e.target.value);
   const onChangeInputInterestRate = (e: any) => setInputInterestRate(e.target.value);
-  const zentohaninputBorrowing: any = (inputBorrowing: any) => {
+
+  const zentohanInputBorrowing: any = (inputBorrowing: any) => {
     return String(inputBorrowing).replace(/[０-９]/g, function (s: any) {
     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
     })
   }
-  const zentohaninputPaybackYears: any = (inputPaybackYears: any) => {
+  const zentohanInputPaybackYears: any = (inputPaybackYears: any) => {
     return String(inputPaybackYears).replace(/[０-９]/g, function (s: any) {
     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
     })
   }
-  const zentohaninputPaybackMounths: any = (inputPaybackMounths: any) => {
+  const zentohanInputPaybackMounths: any = (inputPaybackMounths: any) => {
     return String(inputPaybackMounths).replace(/[０-９]/g, function (s: any) {
     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
     })
   }
-  const zentohaninputInterestRate: any = (inputInterestRate: any) => {
+  const zentohanInputInterestRate: any = (inputInterestRate: any) => {
     return String(inputInterestRate).replace(/[０-９]/g, function (s: any) {
     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
     })
   }
-  const hankakuinputBorrowing = zentohaninputBorrowing(inputBorrowing)
-  const hankakuinputPaybackYears = zentohaninputPaybackYears(inputPaybackYears)
-  const hankakuinputPaybackMounths = zentohaninputPaybackMounths(inputPaybackMounths)
-  const hankakuinputInterestRate = zentohaninputInterestRate(inputInterestRate)
-  const firstinputPaybackYears = hankakuinputPaybackYears || 0.;
-  const firstinputPaybackMounths = hankakuinputPaybackMounths || 0;
-  let numPayBack: number = Number(firstinputPaybackYears)*12+Number(firstinputPaybackMounths);
-  const percentages: number = Number(hankakuinputInterestRate)/100
+
+  const hankakuInputBorrowing = zentohanInputBorrowing(inputBorrowing)
+  const hankakuInputPaybackYears = zentohanInputPaybackYears(inputPaybackYears)
+  const hankakuInputPaybackMounths = zentohanInputPaybackMounths(inputPaybackMounths)
+  const hankakuInputInterestRate = zentohanInputInterestRate(inputInterestRate)
+
+  const limitInputBorrowing = (hankakuInputBorrowing: any) => {
+    if (hankakuInputBorrowing.length > 10) {
+      return hankakuInputBorrowing.slice(0,10)
+    } else {
+      return hankakuInputBorrowing
+    }
+  }
+  const limitInputPaybackYears = (hankakuInputPaybackYears: any) => {
+    if (hankakuInputPaybackYears.length > 2) {
+      return hankakuInputPaybackYears.slice(0,2)
+    } else {
+      return hankakuInputPaybackYears
+    }
+  }
+  const limitInputPaybackMounths = (hankakuInputPaybackMounths: any) => {
+    if (hankakuInputPaybackMounths.length > 2) {
+      return hankakuInputPaybackMounths.slice(0,2)
+    } else {
+      return hankakuInputPaybackMounths
+    }
+  }
+  const limitInputInterestRate = (hankakuInputInterestRate: any) => {
+    if (hankakuInputInterestRate.includes(".")) {
+      return hankakuInputInterestRate.slice(0,5)
+    }
+    else if (hankakuInputInterestRate.length > 2) {
+      return hankakuInputInterestRate.slice(0,2)
+    } else {
+      return hankakuInputInterestRate
+    }
+  }
+
+  const limitHankakuInputBorrowing = limitInputBorrowing(hankakuInputBorrowing)
+  const limitHankakuInputPaybackYears = limitInputPaybackYears(hankakuInputPaybackYears)
+  const limitHankakuInputPaybackMounths = limitInputPaybackMounths(hankakuInputPaybackMounths)
+  const limitHankakuInputInterestRate = limitInputInterestRate(hankakuInputInterestRate)
+
+  const firstInputPaybackYears = limitHankakuInputPaybackYears || 0.;
+  const firstInputPaybackMounths = limitHankakuInputPaybackMounths || 0;
+  let numPayBack: number = Number(firstInputPaybackYears)*12+Number(firstInputPaybackMounths);
+  const percentages: number = Number(limitHankakuInputInterestRate)/100
   const exponentiation: number = Math.pow((1+percentages), Number(numPayBack));
-  const mounthsPayback: number = Number(hankakuinputBorrowing)*(percentages)*exponentiation/(exponentiation-1);
+  const mounthsPayback: number = Number(limitHankakuInputBorrowing)*(percentages)*exponentiation/(exponentiation-1);
   const numTotalPayBack: number = Number(mounthsPayback) * numPayBack;
-  const totalInterest: number = Number(numTotalPayBack)-Number(hankakuinputBorrowing);
+  const totalInterest: number = Number(numTotalPayBack)-Number(limitHankakuInputBorrowing);
+
   const nanTotalPayBack = (numTotalPayBack: any) => {
     if (isNaN(numTotalPayBack)) {
       return "-"
@@ -63,32 +104,32 @@ function App() {
       return Math.round(totalInterest).toLocaleString()
     }
   }
-  const undefinedBorrowing = (hankakuinputBorrowing: any) => {
-    if (hankakuinputBorrowing === "undefined") {
+  const undefinedBorrowing = (limitHankakuInputBorrowing: any) => {
+    if (limitHankakuInputBorrowing === "undefined") {
       return ""
     } else {
-      return hankakuinputBorrowing
+      return limitHankakuInputBorrowing
     }
   }
-  const undefinedPaybackYears = (hankakuinputPaybackYears: any) => {
-    if (hankakuinputPaybackYears === "undefined") {
+  const undefinedPaybackYears = (limitHankakuInputPaybackYears: any) => {
+    if (limitHankakuInputPaybackYears === "undefined") {
       return ""
     } else {
-      return hankakuinputPaybackYears
+      return limitHankakuInputPaybackYears
     }
   }
-  const undefinedPaybackMounths = (hankakuinputPaybackMounths: any) => {
-    if (hankakuinputPaybackMounths === "undefined") {
+  const undefinedPaybackMounths = (limitHankakuInputPaybackMounths: any) => {
+    if (limitHankakuInputPaybackMounths === "undefined") {
       return ""
     } else {
-      return hankakuinputPaybackMounths
+      return limitHankakuInputPaybackMounths
     }
   }
-  const undefinedInterestRate = (hankakuinputPaybackInterestRate: any) => {
-    if (hankakuinputPaybackInterestRate === "undefined") {
+  const undefinedInterestRate = (hankakuInputPaybackInterestRate: any) => {
+    if (hankakuInputPaybackInterestRate === "undefined") {
       return ""
     } else {
-      return hankakuinputPaybackInterestRate
+      return hankakuInputPaybackInterestRate
     }
   }
 
@@ -101,14 +142,14 @@ function App() {
         <div className="input-area">
           <div className="borrowing-area">
             <div className="borrowing">借入金額</div>
-            <input className="borrowing-input" value={undefinedBorrowing(hankakuinputBorrowing)} onChange={onChangeInputBorrowing} />
+            <input className="borrowing-input" value={undefinedBorrowing(limitHankakuInputBorrowing)} onChange={onChangeInputBorrowing} />
             <div className="yen">円</div>
           </div>
           <div className="payback-area">
             <div className="payback">返済期間</div>
             <div className="inline-block">
-              <input className="payback_years-input" value={undefinedPaybackYears(hankakuinputPaybackYears)} onChange={onChangeInputPaybackYears}/>
-              <input className="payback_months-input" value={undefinedPaybackMounths(hankakuinputPaybackMounths)} onChange={onChangeInputPaybackMounths}/>
+              <input className="payback_years-input" value={undefinedPaybackYears(limitHankakuInputPaybackYears)} onChange={onChangeInputPaybackYears}/>
+              <input className="payback_months-input" value={undefinedPaybackMounths(limitHankakuInputPaybackMounths)} onChange={onChangeInputPaybackMounths}/>
             </div>
             <div className="inline-block">
               <span className="years">年</span>
@@ -117,7 +158,7 @@ function App() {
           </div>
           <div className="interest-rate-area">
             <div className="interest-rate">金利</div>
-            <input className="interest-rate-input" value={undefinedInterestRate(hankakuinputInterestRate)} onChange={onChangeInputInterestRate}/>
+            <input className="interest-rate-input" value={undefinedInterestRate(limitHankakuInputInterestRate)} onChange={onChangeInputInterestRate}/>
             <div className="percentage">％</div>
           </div>
         </div>
