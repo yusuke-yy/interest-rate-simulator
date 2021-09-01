@@ -74,9 +74,22 @@ function App() {
   const limitHankakuInputPaybackMounths = limitInputPaybackMounths(hankakuInputPaybackMounths)
   const limitHankakuInputInterestRate = limitInputInterestRate(hankakuInputInterestRate)
 
-  const firstInputPaybackYears = limitHankakuInputPaybackYears || 0.;
-  const firstInputPaybackMounths = limitHankakuInputPaybackMounths || 0;
-  let numPayBack: number = Number(firstInputPaybackYears)*12+Number(firstInputPaybackMounths);
+  const firstInputPaybackYears = (limitHankakuInputPaybackYears:any) => {
+    if (limitHankakuInputPaybackYears === "un") {
+      return 0
+    } else {
+      return limitHankakuInputPaybackYears
+    }
+  }
+  const firstInputPaybackMounths = (limitHankakuInputPaybackMounths:any) => {
+    if (limitHankakuInputPaybackMounths === "un") {
+      return 0
+    } else {
+      return limitHankakuInputPaybackMounths
+    }
+  }
+
+  let numPayBack: number = Number(firstInputPaybackYears(limitHankakuInputPaybackYears))*12+Number(firstInputPaybackMounths(limitHankakuInputPaybackMounths));
   const percentages: number = Number(limitHankakuInputInterestRate)/100
   const exponentiation: number = Math.pow((1+percentages), Number(numPayBack));
   const mounthsPayback: number = Number(limitHankakuInputBorrowing)*(percentages)*exponentiation/(exponentiation-1);
