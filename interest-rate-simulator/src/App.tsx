@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./styles.css";
 
 function App() {
+  // 入力された値を受け取る
   const [inputBorrowing, setInputBorrowing] = useState<number>();
   let [inputPaybackYears, setInputPaybackYears] = useState<any>();
   let [inputPaybackMounths, setInputPaybackMounths] = useState<any>();
@@ -11,6 +12,7 @@ function App() {
   const onChangeInputPaybackMounths = (e: any) => setInputPaybackMounths(e.target.value);
   const onChangeInputInterestRate = (e: any) => setInputInterestRate(e.target.value);
 
+  // 全角数字で入力されたものを半角数字にする関数
   const zentohanInputBorrowing: any = (inputBorrowing: any) => {
     return String(inputBorrowing).replace(/[０-９]/g, function (s: any) {
     return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
@@ -32,11 +34,13 @@ function App() {
     })
   }
 
+  // 全角数字で入力されたものを半角数字にする
   const hankakuInputBorrowing = zentohanInputBorrowing(inputBorrowing)
   const hankakuInputPaybackYears = zentohanInputPaybackYears(inputPaybackYears)
   const hankakuInputPaybackMounths = zentohanInputPaybackMounths(inputPaybackMounths)
   const hankakuInputInterestRate = zentohanInputInterestRate(inputInterestRate)
 
+  // 10文字以上は入力できないようにする
   const limitInputBorrowing = (hankakuInputBorrowing: any) => {
     if (hankakuInputBorrowing.length > 10) {
       return hankakuInputBorrowing.slice(0,10)
@@ -44,6 +48,7 @@ function App() {
       return hankakuInputBorrowing
     }
   }
+  // 2文字以上は入力できないようにする
   const limitInputPaybackYears = (hankakuInputPaybackYears: any) => {
     if (hankakuInputPaybackYears.length > 2) {
       return hankakuInputPaybackYears.slice(0,2)
@@ -51,6 +56,7 @@ function App() {
       return hankakuInputPaybackYears
     }
   }
+  // 2文字以上は入力できないようにする
   const limitInputPaybackMounths = (hankakuInputPaybackMounths: any) => {
     if (hankakuInputPaybackMounths.length > 2) {
       return hankakuInputPaybackMounths.slice(0,2)
@@ -58,6 +64,7 @@ function App() {
       return hankakuInputPaybackMounths
     }
   }
+  // 小数点がある場合は小数点含め5文字以上、小数点がない場合は2文字以上は入力できないようにする
   const limitInputInterestRate = (hankakuInputInterestRate: any) => {
     if (hankakuInputInterestRate.includes(".")) {
       return hankakuInputInterestRate.slice(0,5)
@@ -69,11 +76,13 @@ function App() {
     }
   }
 
-  const limitHankakuInputBorrowing = limitInputBorrowing(hankakuInputBorrowing)
+  // 文字数制限したものを入れる
+  let limitHankakuInputBorrowing = limitInputBorrowing(hankakuInputBorrowing)
   const limitHankakuInputPaybackYears = limitInputPaybackYears(hankakuInputPaybackYears)
   const limitHankakuInputPaybackMounths = limitInputPaybackMounths(hankakuInputPaybackMounths)
   const limitHankakuInputInterestRate = limitInputInterestRate(hankakuInputInterestRate)
 
+  // 返済期間の年が入力されてないときは0年として計算する
   const firstInputPaybackYears = (limitHankakuInputPaybackYears:any) => {
     if (limitHankakuInputPaybackYears === "un") {
       return 0
@@ -81,6 +90,7 @@ function App() {
       return limitHankakuInputPaybackYears
     }
   }
+    // 返済期間の月が入力されてないときは0ヶ月として計算する
   const firstInputPaybackMounths = (limitHankakuInputPaybackMounths:any) => {
     if (limitHankakuInputPaybackMounths === "un") {
       return 0
@@ -89,13 +99,15 @@ function App() {
     }
   }
 
-  let numPayBack: number = Number(firstInputPaybackYears(limitHankakuInputPaybackYears))*12+Number(firstInputPaybackMounths(limitHankakuInputPaybackMounths));
+  // 金額の計算をする
+  const numPayBack: number = Number(firstInputPaybackYears(limitHankakuInputPaybackYears))*12+Number(firstInputPaybackMounths(limitHankakuInputPaybackMounths));
   const percentages: number = Number(limitHankakuInputInterestRate)/100
   const exponentiation: number = Math.pow((1+percentages), Number(numPayBack));
   const mounthsPayback: number = Number(limitHankakuInputBorrowing)*(percentages)*exponentiation/(exponentiation-1);
   const numTotalPayBack: number = Number(mounthsPayback) * numPayBack;
   const totalInterest: number = Number(numTotalPayBack)-Number(limitHankakuInputBorrowing);
 
+  // 計算結果がまだ出ていないとき（NaN）は「-円」と表示されるようにする
   const nanTotalPayBack = (numTotalPayBack: any) => {
     if (isNaN(numTotalPayBack)) {
       return "-"
@@ -117,6 +129,7 @@ function App() {
       return Math.round(totalInterest).toLocaleString()
     }
   }
+  // 入力前に入力欄に「undefined」と表示されるのを何も表示されないようにする
   const undefinedBorrowing = (limitHankakuInputBorrowing: any) => {
     if (limitHankakuInputBorrowing === "undefined") {
       return ""
@@ -149,7 +162,7 @@ function App() {
   return (
     <>
       <div className="top-area">
-        金利シミュレーター
+        金利シミュレーター 
       </div>
       <div className="grid">
         <div className="input-area">
